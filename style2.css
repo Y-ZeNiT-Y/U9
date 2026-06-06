@@ -774,3 +774,121 @@ body.dark .faltas-bar { background:rgba(255,255,255,0.08); }
 /* dark text override */
 body.dark .uc-context { color:#4a6a88; }
 body.dark .fin-card.status-ok .fin-card-val { color:#1fc98a; }
+
+/* =========================================
+   REGRAS DE ADAPTAÇÃO (RESPONSIVIDADE)
+   ========================================= */
+
+@media (max-width: 768px) {
+    /* 1. Ajuste do Container Geral */
+    .dashboard-container {
+        padding: 10px;
+        flex-direction: column; /* No mobile, itens podem empilhar se necessário */
+    }
+
+    /* 2. Sidebar vira barra de navegação inferior (estilo App) */
+    .sidebar {
+        width: 100%;
+        height: 65px;
+        flex-direction: row;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        border-radius: 0;
+        border-top: 1px solid rgba(255,255,255,0.2);
+        padding: 0 15px;
+        justify-content: space-around;
+        z-index: 999;
+    }
+
+    .sidebar ul {
+        flex-direction: row;
+        justify-content: space-around;
+        gap: 0;
+    }
+
+    .logo-box {
+        display: none; /* Esconde o logo no mobile para ganhar espaço */
+    }
+
+    /* 3. Área Principal (Ajuste de margem para não cobrir o conteúdo com a sidebar) */
+    .main-content {
+        padding: 15px;
+        margin-bottom: 70px; /* Espaço para a barra inferior */
+        gap: 15px;
+    }
+
+    /* 4. Calendário: Transforma colunas em lista vertical */
+    .calendar-grid {
+        grid-template-columns: 1fr; /* Um dia embaixo do outro */
+        gap: 12px;
+    }
+
+    .cal-col {
+        flex-direction: row; /* Coloca o cabeçalho do dia ao lado do card */
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .cal-day-header {
+        min-width: 50px;
+        background: var(--ulife-blue-light);
+    }
+
+    .cal-card {
+        flex-grow: 1;
+    }
+
+    /* 5. Carrossel: Ajuste de Altura */
+    .hero-carousel {
+        min-height: 180px;
+    }
+    .carousel-slide h2 { font-size: 1.2rem; }
+
+    /* 6. Cards de Disciplinas (UCs) */
+    .uc-card {
+        flex-direction: column; /* Imagem em cima, texto embaixo */
+        height: auto;
+    }
+
+    .uc-thumbnail {
+        width: 100%;
+        height: 100px;
+    }
+
+    .uc-content {
+        border-left: none;
+        border-top: 1px solid var(--border);
+    }
+
+    /* 7. Financeiro e Notas: Empilhar os cards de resumo */
+    .fin-summary, 
+    .notas-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* 8. Tabelas: Habilitar scroll lateral para não quebrar o layout */
+    .fin-table-section {
+        overflow-x: auto;
+    }
+    .fin-table {
+        min-width: 500px; /* Garante que a tabela não fique ilegível */
+    }
+
+    /* 9. Modais: Ajuste de largura para ocupar quase a tela toda */
+    .profile-modal, 
+    .content-modal {
+        width: 95%;
+        margin: 10px;
+    }
+}
+
+/* Ajuste para tablets ou telas médias */
+@media (min-width: 769px) and (max-width: 1100px) {
+    .calendar-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 dias por linha em tablets */
+    }
+    .notas-grid {
+        grid-template-columns: 1fr;
+    }
+}
