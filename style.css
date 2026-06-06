@@ -581,3 +581,78 @@ body.colab-theme .logo-box {
   body { flex-direction: column; justify-content: center; gap: 40px; }
   .circle-bg { display: none; }
 }
+
+/* =========================================
+   REGRAS DE ADAPTAÇÃO PARA A TELA DE LOGIN
+   ========================================= */
+
+@media (max-width: 1024px) {
+    body {
+        gap: 50px; /* Reduz o espaço entre logo e card em tablets */
+    }
+    .logo-box {
+        left: 0; /* Traz a logo para perto do card */
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        flex-direction: column; /* Empilha logo e card verticalmente */
+        justify-content: flex-start; /* Começa do topo para permitir scroll */
+        padding: 20px;
+        gap: 30px;
+        overflow-y: auto; /* Permite rolar a tela se o teclado do celular abrir */
+        height: auto;
+        min-height: 100vh;
+    }
+
+    /* Esconde a linha decorativa gigante que quebra o scroll no celular */
+    .circle-bg {
+        display: none;
+    }
+
+    /* Ajusta a Logo */
+    .logo-box {
+        left: 0;
+        transform: none;
+        animation: fadeUpMobile 1.2s ease forwards;
+        width: 100px; /* Menor no celular */
+        height: 100px;
+        padding: 20px;
+        margin-top: 20px;
+    }
+
+    /* Ajusta o Card de Login */
+    .card {
+        max-width: 100%;
+        width: 100%;
+        padding: 30px 20px;
+        margin-bottom: 40px;
+    }
+
+    /* Ajusta o Modal para não sumir nas bordas */
+    .modal-conteudo {
+        width: 95%;
+        margin: 10px;
+    }
+
+    .modal-body {
+        padding: 15px;
+    }
+
+    /* Tira a tradução lateral da animação que jogaria a logo pra fora */
+    @keyframes fadeUpMobile {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+}
+
+/* Ajuste extra para celulares bem pequenos */
+@media (max-width: 380px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+    .domain {
+        display: none; /* Esconde o @ulife.edu.br para o input não esmagar */
+    }
+}
