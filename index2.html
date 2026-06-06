@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unine — Dashboard</title>
+    <link rel="icon" href="logo.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+
+    <div class="theme-toggle" id="themeToggle" title="Alternar tema">
+        <i class="fa-regular fa-moon" id="themeIcon"></i>
+    </div>
+
+    <div class="dashboard-container">
+        <!-- SIDEBAR -->
+        <nav class="sidebar">
+            <div class="logo-box" id="logoBox" title="Perfil">
+                <img src="logo.png" alt="Perfil" class="perfil-img">
+            </div>
+            <ul>
+                <li class="active" data-view="home"><a href="#" title="Início"><i class="fa-solid fa-house"></i></a></li>
+                <li data-view="disciplinas"><a href="#" title="Disciplinas"><i class="fa-solid fa-book-open"></i></a></li>
+                <li data-view="calendario"><a href="#" title="Calendário"><i class="fa-regular fa-calendar"></i></a></li>
+                <li data-view="notas"><a href="#" title="Notas e Faltas"><i class="fa-solid fa-chart-line"></i></a></li>
+                <li data-view="financeiro"><a href="#" title="Financeiro"><i class="fa-solid fa-file-invoice-dollar"></i></a></li>
+            </ul>
+        </nav>
+
+        <!-- MAIN -->
+        <main class="main-content" id="mainContent">
+
+            <!-- VIEW: HOME -->
+            <div class="view active" id="view-home">
+                <!-- Carrossel -->
+                <section class="hero-carousel" id="carousel">
+                    <div class="carousel-track" id="carouselTrack">
+                        <div class="carousel-slide" style="background-image:url('https://cdn.gge.com.br/web/wp-content/uploads/2021/02/plano-de-estudos-banner.png')">
+                            <h2>Bem-vindo ao seu Unine</h2>
+                            <p>Acesse suas disciplinas, notas e avisos em um só lugar.</p>
+                        </div>
+                        <div class="carousel-slide" style="background-image:url('https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=1200')">
+                            <h2>Rematrícula Aberta</h2>
+                            <p>Garanta sua vaga para o próximo semestre sem sair de casa.</p>
+                        </div>
+                        <div class="carousel-slide" style="background-image:url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?q=80&w=1200')">
+                            <h2>Biblioteca Virtual</h2>
+                            <p>Milhares de e-books disponíveis para sua pesquisa.</p>
+                        </div>
+                    </div>
+                    <button class="carousel-btn prev" onclick="changeSlide(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+                    <button class="carousel-btn next" onclick="changeSlide(1)"><i class="fa-solid fa-chevron-right"></i></button>
+                    <div class="carousel-indicators" id="indicators">
+                        <span class="indicator active" onclick="goToSlide(0)"></span>
+                        <span class="indicator" onclick="goToSlide(1)"></span>
+                        <span class="indicator" onclick="goToSlide(2)"></span>
+                    </div>
+                </section>
+
+                <!-- Calendário (MANTIDO INTACTO) -->
+                <section class="calendar-section" id="calSection">
+                    <div class="calendar-top">
+                        <h3 class="calendar-month">MAIO <span>2026</span></h3>
+                        <div class="calendar-controls">
+                            <button class="nav-arrow" onclick="toast('Semana anterior','info')"><i class="fa-solid fa-chevron-left"></i></button>
+                            <a href="#" class="current-week">semana 25–30</a>
+                            <button class="nav-arrow" onclick="toast('Próxima semana','info')"><i class="fa-solid fa-chevron-right"></i></button>
+                            <button class="btn-hoje" onclick="toast('Exibindo semana atual','success')">exibir hoje</button>
+                        </div>
+                    </div>
+                    <div class="calendar-grid">
+                        <div class="cal-col" style="--delay:60ms">
+                            <div class="cal-day-header">SEG<br><span>25</span></div>
+                            <div class="cal-card">
+                                <div class="cal-modality line-purple"><i class="fa-solid fa-person-chalkboard"></i><span>Presencial</span></div>
+                                <div class="cal-time">19h00 – 21h50</div>
+                                <div class="cal-subject">Matemática Computacional Aplicada</div>
+                                <div class="cal-location">Park Shopping · Lab. Informática · Sub. 029</div>
+                                <div class="cal-prof">Decio Marcellino</div>
+                            </div>
+                        </div>
+                        <div class="cal-col" style="--delay:120ms">
+                            <div class="cal-day-header">TER<br><span>26</span></div>
+                            <div class="cal-card">
+                                <div class="cal-modality line-purple"><i class="fa-solid fa-person-chalkboard"></i><span>Presencial</span></div>
+                                <div class="cal-time">19h00 – 21h50</div>
+                                <div class="cal-subject">Matemática Computacional Aplicada</div>
+                                <div class="cal-location">Park Shopping · Sala de Aula · Sub. 026</div>
+                                <div class="cal-prof">Lidiane N. M. Penha</div>
+                            </div>
+                        </div>
+                        <div class="cal-col" style="--delay:180ms">
+                            <div class="cal-day-header">QUA<br><span>27</span></div>
+                            <div class="cal-card">
+                                <div class="cal-modality line-orange"><i class="fa-solid fa-laptop"></i><a href="#" class="link-online" onclick="toast('Abrindo gravação da aula…','info');return false;">Ver gravação →</a></div>
+                                <div class="cal-time">19h00 – 20h40</div>
+                                <div class="cal-subject">Academia de Futuros Profissionais</div>
+                                <div class="cal-location">Ensino a Distância · Sala Virtual</div>
+                                <div class="cal-prof">Francis "OXY" Hoang</div>
+                            </div>
+                        </div>
+                        <div class="cal-col active-day" style="--delay:240ms">
+                            <div class="cal-day-header">QUI<br><span>28</span></div>
+                            <div class="cal-card">
+                                <div class="cal-modality line-teal"><i class="fa-solid fa-person-chalkboard"></i><span>Presencial</span></div>
+                                <div class="cal-time">19h00 – 21h50</div>
+                                <div class="cal-subject">Interação Humano Computador e UX</div>
+                                <div class="cal-location">Park Shopping · Lab. Informática II · Sub. 030</div>
+                                <div class="cal-prof">Jader Alexandre Alquini</div>
+                            </div>
+                        </div>
+                        <div class="cal-col" style="--delay:300ms">
+                            <div class="cal-day-header">SEX<br><span>29</span></div>
+                            <div class="cal-card">
+                                <div class="cal-modality line-teal"><i class="fa-solid fa-person-chalkboard"></i><span>Presencial</span></div>
+                                <div class="cal-time">19h00 – 21h50</div>
+                                <div class="cal-subject">Interação Humano Computador e UX</div>
+                                <div class="cal-location">Park Shopping · Lab. Informática II · Sub. 030</div>
+                                <div class="cal-prof">Lidiane N. M. Penha</div>
+                            </div>
+                        </div>
+                        <div class="cal-col" style="--delay:360ms">
+                            <div class="cal-day-header">SÁB<br><span>30</span></div>
+                            <div class="cal-card empty-card"><i class="fa-solid fa-mug-hot"></i><span>sem aula</span></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Minhas UCs -->
+                <section class="uc-section">
+                    <div class="uc-header-area">
+                        <div class="uc-title-group">
+                            <h3 class="section-title">Minhas UCs</h3>
+                            <a href="#" class="uc-link-top" onclick="switchView('disciplinas');return false;"><span class="dot-separator">•</span> Ir para Minhas UCs</a>
+                        </div>
+                        <div class="uc-filter">
+                            <span>Ordenar por:</span>
+                            <select class="custom-select" id="ucSort" onchange="sortUCs()">
+                                <option>Últimos acessos</option>
+                                <option>Nome (A–Z)</option>
+                                <option>Progresso</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="uc-list" id="ucList"></div>
+                </section>
+            </div>
+
+            <!-- VIEW: DISCIPLINAS -->
+            <div class="view" id="view-disciplinas">
+                <div class="page-header">
+                    <i class="fa-solid fa-book-open"></i>
+                    <h2>Minhas Disciplinas</h2>
+                </div>
+                <div class="uc-list" id="ucListDisciplinas"></div>
+            </div>
+
+            <!-- VIEW: CALENDÁRIO -->
+            <div class="view" id="view-calendario">
+                <div class="page-header">
+                    <i class="fa-regular fa-calendar"></i>
+                    <h2>Calendário Acadêmico</h2>
+                </div>
+                <!-- Versão limpa da visualização de calendário completa -->
+                <div class="fin-table-section">
+                    <h3>Eventos e Provas Agendadas</h3>
+                    <table class="fin-table">
+                        <thead><tr><th>Evento</th><th>Disciplina</th><th>Data</th><th>Tipo</th></tr></thead>
+                        <tbody>
+                            <tr><td>Prova AV1</td><td>Matemática Computacional</td><td>10/06/2026</td><td><span class="status-pill pill-pendente"><i class="fa-solid fa-circle"></i> Prova</span></td></tr>
+                            <tr><td>Entrega Trabalho</td><td>IHC e UX</td><td>14/06/2026</td><td><span class="status-pill pill-pendente"><i class="fa-solid fa-circle"></i> Trabalho</span></td></tr>
+                            <tr><td>Prova AV1</td><td>Academia Fut. Prof.</td><td>18/06/2026</td><td><span class="status-pill pill-pendente"><i class="fa-solid fa-circle"></i> Prova</span></td></tr>
+                            <tr><td>Rematrícula</td><td>—</td><td>25/06/2026</td><td><span class="status-pill pill-vencido"><i class="fa-solid fa-circle"></i> Prazo</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- VIEW: NOTAS E FALTAS -->
+            <div class="view" id="view-notas">
+                <div class="page-header">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <h2>Notas e Faltas</h2>
+                </div>
+                <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;">
+                    <div class="fin-card status-ok"><div class="fin-card-label">Média Geral</div><div class="fin-card-val">7.8</div><div class="fin-card-sub">Acima da média mínima</div></div>
+                    <div class="fin-card"><div class="fin-card-label">Total de Faltas</div><div class="fin-card-val" style="color:var(--orange)">8</div><div class="fin-card-sub">De 72 aulas totais</div></div>
+                    <div class="fin-card status-ok"><div class="fin-card-label">Situação</div><div class="fin-card-val">Aprovado</div><div class="fin-card-sub">Em todas as disciplinas</div></div>
+                </div>
+                <div class="notas-grid" id="notasGrid"></div>
+            </div>
+
+            <!-- VIEW: FINANCEIRO -->
+            <div class="view" id="view-financeiro">
+                <div class="page-header">
+                    <i class="fa-solid fa-file-invoice-dollar"></i>
+                    <h2>Financeiro</h2>
+                </div>
+                <div class="fin-summary">
+                    <div class="fin-card status-warn">
+                        <div class="fin-card-label">Mensalidade Atual</div>
+                        <div class="fin-card-val">R$ 890,00</div>
+                        <div class="fin-card-sub">Vence em 10/06/2026</div>
+                    </div>
+                    <div class="fin-card status-ok">
+                        <div class="fin-card-label">Último Pagamento</div>
+                        <div class="fin-card-val">R$ 890,00</div>
+                        <div class="fin-card-sub">Pago em 08/05/2026</div>
+                    </div>
+                    <div class="fin-card">
+                        <div class="fin-card-label">Desconto Aplicado</div>
+                        <div class="fin-card-val" style="color:var(--Unine-blue)">20%</div>
+                        <div class="fin-card-sub">Bolsa mérito acadêmico</div>
+                    </div>
+                </div>
+                <div class="fin-table-section">
+                    <h3>Histórico de Pagamentos</h3>
+                    <table class="fin-table">
+                        <thead>
+                            <tr><th>Competência</th><th>Descrição</th><th>Vencimento</th><th>Status</th><th>Valor</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Jun/2026</td><td>Mensalidade — ADS</td><td>10/06/2026</td><td><span class="status-pill pill-pendente"><i class="fa-solid fa-circle"></i> Pendente</span></td><td class="fin-val-pendente">R$ 890,00</td></tr>
+                            <tr><td>Mai/2026</td><td>Mensalidade — ADS</td><td>10/05/2026</td><td><span class="status-pill pill-pago"><i class="fa-solid fa-check"></i> Pago</span></td><td class="fin-val-pago">R$ 890,00</td></tr>
+                            <tr><td>Abr/2026</td><td>Mensalidade — ADS</td><td>10/04/2026</td><td><span class="status-pill pill-pago"><i class="fa-solid fa-check"></i> Pago</span></td><td class="fin-val-pago">R$ 890,00</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="fin-actions">
+                        <button class="btn-fin primary" onclick="toast('Abrindo boleto…','success')"><i class="fa-solid fa-barcode"></i> Gerar Boleto</button>
+                        <button class="btn-fin secondary" onclick="toast('Baixando extrato…','info')"><i class="fa-solid fa-download"></i> Extrato</button>
+                        <button class="btn-fin primary" onclick="toast('Entrando em contato com o financeiro…','info')"><i class="fa-solid fa-headset"></i> Suporte</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- MODAL: PERFIL -->
+    <div class="modal-overlay" id="profileOverlay" onclick="closeModal('profile')">
+        <div class="profile-modal" onclick="event.stopPropagation()">
+            <div class="profile-header">
+                <div class="profile-avatar">GS</div>
+                <div class="profile-name">Gabriel Silva</div>
+                <div class="profile-course">Análise e Desenvolvimento de Sistemas</div>
+                <button class="profile-close" onclick="closeModal('profile')"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="profile-body">
+                <div class="profile-info-row"><i class="fa-solid fa-id-card"></i> <span class="profile-info-label">RA</span> <span class="profile-info-val">23001842</span></div>
+                <div class="profile-info-row"><i class="fa-solid fa-envelope"></i> <span class="profile-info-label">E-mail</span> <span class="profile-info-val">gabriel.silva@Unine.edu.br</span></div>
+            </div>
+            <div class="profile-footer">
+                <button class="btn-profile-action secondary" onclick="closeModal('profile')"><i class="fa-solid fa-right-from-bracket"></i> Sair</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: CONTEÚDO -->
+    <div class="modal-overlay" id="contentOverlay" onclick="closeModal('content')">
+        <div class="content-modal" onclick="event.stopPropagation()">
+            <div class="content-modal-header">
+                <h3 id="contentModalTitle">Conteúdo</h3>
+                <button class="profile-close" onclick="closeModal('content')"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="content-modal-body" id="contentModalBody"></div>
+        </div>
+    </div>
+
+    <div class="toast-container" id="toastContainer"></div>
+    <script src="script2.js"></script>
+</body>
+</html>
